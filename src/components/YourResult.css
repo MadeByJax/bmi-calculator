@@ -1,0 +1,65 @@
+.yourresult {
+  margin-top: 72px;
+}
+
+.image img {
+  width: 100%;
+}
+
+.yourresult--container {
+  display: grid;
+  gap: 48px;
+}
+
+.bmi--results {
+  color: #5e6e85;
+  padding-inline: 24px;
+}
+
+.bmi--results h3 {
+  font-size: 32px;
+  font-weight: 600;
+  color: #253347;
+  margin-bottom: 32px;
+}
+
+@media screen and (min-width: 768px) {
+  .yourresult--container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+
+  .bmi--results {
+    padding: 0px;
+    padding-right: 48px;
+
+    text-align: left;
+    margin-left: auto;
+  }
+
+  .bmi--results h3 {
+    font-size: 32px;
+  }
+
+  .image img {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .yourresult--container {
+    align-items: center;
+    width: 90%;
+    max-width: 1280px;
+    margin-inline: auto;
+    margin-top: 150px;
+  }
+
+  .bmi--results {
+    padding-right: 0;
+  }
+  .bmi--results h3 {
+    font-size: 48px;
+  }
+}

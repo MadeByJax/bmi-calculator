@@ -1,0 +1,77 @@
+body {
+  overflow-x: hidden;
+}
+
+.header--container {
+  text-align: center;
+  margin: 0 auto;
+  display: grid;
+  position: relative;
+  width: 90%;
+  max-width: 1280px;
+}
+
+.header-img-wrapper {
+  margin: 0 auto;
+  margin-top: 32px;
+  width: 44px;
+}
+
+.title h1 {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 110%;
+  margin-top: 22px;
+  margin-bottom: 24px;
+  color: #253347;
+  margin-inline: auto;
+  max-width: 520px;
+}
+
+.title p {
+  color: #5e6e85;
+}
+
+.header::before {
+  content: "";
+  position: absolute;
+  top: 0%;
+  left: 0;
+  width: 100%;
+  height: 640px;
+  background: linear-gradient(
+    to bottom right,
+    RGBA(214, 252, 254, 0),
+    #d6e6fe
+  ); /* Replace these colors with your desired gradient */
+  border-radius: 0 0 35px 35px;
+  z-index: -1; /* Place the pseudo-element behind the content */
+}
+
+@media screen and (min-width: 1024px) {
+  .header--container {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    text-align: left;
+    gap: 130px;
+  }
+
+  .title h1 {
+    margin-inline: 0;
+    font-size: 64px;
+  }
+  .header--container img {
+    position: absolute;
+    top: 0;
+  }
+  .header::before {
+    max-width: 1200px;
+    height: 750px;
+  }
+
+  .header-img-wrapper {
+    height: auto;
+    width: 90%;
+    max-width: 1280px;
+  }
+}

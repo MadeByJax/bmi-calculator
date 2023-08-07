@@ -1,0 +1,65 @@
+.limitations {
+  margin-top: 70px;
+  margin-inline: auto;
+  text-align: center;
+  color: #5e6e85;
+  width: 90%;
+  max-width: 1280px;
+}
+
+.limitations--title {
+  font-size: 32px;
+  color: #253347;
+  margin-bottom: 32px;
+}
+
+.card--section {
+  display: grid;
+  gap: 16px;
+  margin-top: 56px;
+  margin-bottom: 96px;
+}
+
+.card--container {
+  padding: 24px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 15px 33px 57px 0px rgba(143, 174, 207, 0.26);
+  -webkit-box-shadow: 15px 33px 57px 0px rgba(143, 174, 207, 0.26);
+  -moz-box-shadow: 15px 33px 57px 0px rgba(143, 174, 207, 0.26);
+}
+
+.card--container p {
+  text-align: left;
+}
+
+.top--card {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.card--title {
+  font-size: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .card--section {
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+  }
+
+  .limitations {
+    width: 90%;
+    margin-inline: auto;
+  }
+
+  .card--container {
+    grid-column: span 2;
+  }
+
+  .card--container:last-child {
+    grid-column: 2 / span 2;
+  }
+}
