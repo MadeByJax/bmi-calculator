@@ -13,6 +13,8 @@ const Calculator = () => {
   const handleRadioButton = (value) => {
     setIsMetric(value);
     console.log(isMetric);
+    setHeight({ cm: "", ft: "", in: "" });
+    setWeight({ kg: "", lbs: "" });
   };
 
   const calculateBMI = () => {
@@ -81,7 +83,8 @@ const Calculator = () => {
               <input
                 onChange={(e) => setHeight({ ...height, cm: e.target.value })}
                 placeholder="cm"
-                type="text"
+                type="number"
+                value={height.cm}
               />
             </div>
             <label htmlFor="">Weight</label>
@@ -89,7 +92,8 @@ const Calculator = () => {
               <input
                 onChange={(e) => setWeight({ ...weight, kg: e.target.value })}
                 placeholder="kg"
-                type="text"
+                type="number"
+                value={weight.kg}
               />
             </div>
           </div>
@@ -100,12 +104,14 @@ const Calculator = () => {
               <input
                 onChange={(e) => setHeight({ ...height, ft: e.target.value })}
                 placeholder="ft"
-                type="text"
+                type="number"
+                value={height.ft}
               />
               <input
                 onChange={(e) => setHeight({ ...height, in: e.target.value })}
                 placeholder="in"
-                type="text"
+                type="number"
+                value={height.in}
               />
             </div>
             <label htmlFor="">Weight</label>
@@ -114,6 +120,7 @@ const Calculator = () => {
                 onChange={(e) => setWeight({ ...weight, lbs: e.target.value })}
                 placeholder="lbs"
                 type="text"
+                value={weight.lbs}
               />
             </div>
           </div>
