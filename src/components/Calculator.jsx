@@ -8,19 +8,34 @@ const Calculator = () => {
   const [weight, setWeight] = useState({ kg: "", lbs: "" });
   const [height, setHeight] = useState({ cm: "", ft: "", in: "" });
 
+  // Function to determine whether the user is a healthy weight
+  const getWeightStatus = (bmi) => {
+    if (bmi < 18.5) {
+      return "Underweight";
+    } else if (bmi >= 18.5 && bmi < 24.9) {
+      return "a Healthy Weight";
+    } else if (bmi >= 25 && bmi < 29.9) {
+      return "Overweight";
+    } else {
+      return "Obese";
+    }
+  };
+
   const [bmiResult, setBmiResult] = useState("--");
 
+  // Tells the application whether the measurement is in Metric or Imperial
   const handleRadioButton = (value) => {
     setIsMetric(value);
-    console.log(isMetric);
     setHeight({ cm: "", ft: "", in: "" });
     setWeight({ kg: "", lbs: "" });
   };
 
+  // Calculates BMI depending if the user selected metric or imperial
   const calculateBMI = () => {
     if (isMetric) {
       const weightKg = parseFloat(weight.kg);
       const heightCm = parseFloat(height.cm);
+      // Validation if user enters invalid input
       if (isNaN(weightKg) || isNaN(heightCm)) {
         setBmiResult("--");
       } else {
@@ -32,12 +47,9 @@ const Calculator = () => {
       const heightFt = parseFloat(height.ft);
       const heightIn = parseFloat(height.in);
       const heightInCalc = heightFt * 12 + heightIn;
+      // Validation if user enters invalid input
       if (isNaN(heightInCalc) || isNaN(weightLbs)) {
         setBmiResult("--");
-        console.log(heightInCalc);
-        console.log("heightFt:", heightFt);
-        console.log("heightIn:", heightIn);
-        console.log("heightInCalc:", heightInCalc);
       } else {
         let bmi = (weightLbs / (heightInCalc * heightInCalc)) * 703;
         setBmiResult(bmi.toFixed(1));
@@ -45,9 +57,9 @@ const Calculator = () => {
     }
   };
 
+  // Calculates BMI once the user enters a value into the inputs
   useEffect(() => {
     calculateBMI();
-    console.log(bmiResult);
   }, [weight, height, bmiResult]);
 
   return (
@@ -132,10 +144,17 @@ const Calculator = () => {
             <h4>{bmiResult}</h4>
           </div>
           <div className="right--side">
-            <p>
-              Your BMI suggests you're a healthy weight. Your ideal weight is
-              between 9st 6lbs - 12st 10lbs
-            </p>
+            {bmiResult === "--" ? (
+              <p>Please enter your Height and Weight</p>
+            ) : (
+              <p>
+                {`Your BMI suggests you're`}{" "}
+                <strong>{getWeightStatus(bmiResult)}</strong>
+                {`. A healthy weight
+              range is between`}{" "}
+                <strong>{`18.5 and 24.9`}</strong>
+              </p>
+            )}
           </div>
         </div>
       </div>
