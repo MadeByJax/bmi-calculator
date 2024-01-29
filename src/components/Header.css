@@ -14,8 +14,13 @@ body {
 .header-img-wrapper {
   margin: 0 auto;
   margin-top: 32px;
-  width: 44px;
+  width: 90%;
+  max-width: 1280px;
+  display: flex;
+  justify-content: center;
 }
+
+
 
 .title h1 {
   font-size: 48px;
@@ -70,8 +75,6 @@ body {
   }
 
   .header-img-wrapper {
-    height: auto;
-    width: 90%;
-    max-width: 1280px;
+    justify-content: left;
   }
 }
