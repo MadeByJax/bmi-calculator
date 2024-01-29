@@ -1,6 +1,6 @@
 import React from "react";
 import "./YourResult.css";
-import manEating from "../assets/images/image-man-eating.webp";
+import manEating from "/assets/images/image-man-eating.webp";
 
 const YourResult = () => {
   return (

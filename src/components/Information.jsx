@@ -1,9 +1,9 @@
 import React from "react";
 import "./Information.css";
 
-import Eating from "../assets/images/icon-eating.svg";
-import Exercise from "../assets/images/icon-exercise.svg";
-import Sleep from "../assets/images/icon-sleep.svg";
+import Eating from "/assets/images/icon-eating.svg";
+import Exercise from "/assets/images/icon-exercise.svg";
+import Sleep from "/assets/images/icon-sleep.svg";
 
 const Information = () => {
   return (

@@ -1,10 +1,10 @@
 import React from "react";
 import "./Limitations.css";
-import Age from "../assets/images/icon-age.svg";
-import Gender from "../assets/images/icon-gender.svg";
-import Muscle from "../assets/images/icon-muscle.svg";
-import Pregnancy from "../assets/images/icon-pregnancy.svg";
-import Race from "../assets/images/icon-race.svg";
+import Age from "/assets/images/icon-age.svg";
+import Gender from "/assets/images/icon-gender.svg";
+import Muscle from "/assets/images/icon-muscle.svg";
+import Pregnancy from "/assets/images/icon-pregnancy.svg";
+import Race from "/assets/images/icon-race.svg";
 
 const Limitations = () => {
   const content = [
