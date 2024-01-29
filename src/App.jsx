@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./app.css";
+import "./App.css";
 import Header from "./components/Header";
 import YourResult from "./components/YourResult";
 import Information from "./components/Information";
