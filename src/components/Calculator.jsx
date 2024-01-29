@@ -7,6 +7,8 @@ const Calculator = () => {
 
   const [weight, setWeight] = useState({ kg: "", lbs: "" });
   const [height, setHeight] = useState({ cm: "", ft: "", in: "" });
+  const [healthyWeightRange, setHealthyWeightRange] = useState(["--", "--"]);
+  const [bmiResult, setBmiResult] = useState("--");
 
   // Function to determine whether the user is a healthy weight
   const getWeightStatus = (bmi) => {
@@ -21,8 +23,6 @@ const Calculator = () => {
     }
   };
 
-  const [bmiResult, setBmiResult] = useState("--");
-
   // Tells the application whether the measurement is in Metric or Imperial
   const handleRadioButton = (value) => {
     setIsMetric(value);
@@ -32,35 +32,55 @@ const Calculator = () => {
 
   // Calculates BMI depending if the user selected metric or imperial
   const calculateBMI = () => {
+    let bmi;
     if (isMetric) {
       const weightKg = parseFloat(weight.kg);
-      const heightCm = parseFloat(height.cm);
-      // Validation if user enters invalid input
-      if (isNaN(weightKg) || isNaN(heightCm)) {
+      const heightM = parseFloat(height.cm) / 100;
+      if (isNaN(weightKg) || isNaN(heightM)) {
         setBmiResult("--");
-      } else {
-        let bmi = weightKg / ((heightCm / 100) * (heightCm / 100));
-        setBmiResult(bmi.toFixed(1));
+        return;
       }
+      bmi = weightKg / (heightM * heightM);
     } else {
       const weightLbs = parseFloat(weight.lbs);
-      const heightFt = parseFloat(height.ft);
-      const heightIn = parseFloat(height.in);
-      const heightInCalc = heightFt * 12 + heightIn;
-      // Validation if user enters invalid input
-      if (isNaN(heightInCalc) || isNaN(weightLbs)) {
+      const heightIn = parseFloat(height.ft) * 12 + parseFloat(height.in);
+      if (isNaN(weightLbs) || isNaN(heightIn)) {
         setBmiResult("--");
-      } else {
-        let bmi = (weightLbs / (heightInCalc * heightInCalc)) * 703;
-        setBmiResult(bmi.toFixed(1));
+        return;
       }
+      bmi = (weightLbs / (heightIn * heightIn)) * 703;
     }
+    setBmiResult(bmi.toFixed(1));
+  };
+
+  const calculateHealthyWeightRange = () => {
+    let lowerWeight, upperWeight;
+    if (isMetric) {
+      const heightM = parseFloat(height.cm) / 100;
+      if (isNaN(heightM)) {
+        return ["--", "--"];
+      }
+      lowerWeight = (18.5 * heightM * heightM).toFixed(1);
+      upperWeight = (24.9 * heightM * heightM).toFixed(1);
+    } else {
+      const heightIn = parseFloat(height.ft) * 12 + parseFloat(height.in);
+      if (isNaN(heightIn)) {
+        return ["--", "--"];
+      }
+      lowerWeight = ((18.5 * heightIn * heightIn) / 703).toFixed(1);
+      upperWeight = ((24.9 * heightIn * heightIn) / 703).toFixed(1);
+    }
+    return [lowerWeight, upperWeight];
   };
 
   // Calculates BMI once the user enters a value into the inputs
   useEffect(() => {
     calculateBMI();
   }, [weight, height, bmiResult]);
+
+  useEffect(() => {
+    setHealthyWeightRange(calculateHealthyWeightRange());
+  }, [height, isMetric]);
 
   return (
     <div className="calculator">
@@ -151,8 +171,10 @@ const Calculator = () => {
                 {`Your BMI suggests you're`}{" "}
                 <strong>{getWeightStatus(bmiResult)}</strong>
                 {`. A healthy weight
-              range is between`}{" "}
-                <strong>{`18.5 and 24.9`}</strong>
+    range for your height is between`}{" "}
+                <strong>{`${healthyWeightRange[0]} and ${
+                  healthyWeightRange[1]
+                } ${isMetric ? "kg" : "lbs"}`}</strong>
               </p>
             )}
           </div>
